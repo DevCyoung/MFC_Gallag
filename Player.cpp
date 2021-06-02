@@ -13,8 +13,11 @@ IMPLEMENT_DYNAMIC(Player, CWnd)
 Player::Player()
 {
 
-	bitmap.LoadBitmap(IDB_CRAFT);
+	int ID_SPRITE = IDB_CRAFT;
+	bitmap.LoadBitmap(ID_SPRITE);
 	bitmap.GetBitmap(&bmpinfo);
+	isAlive = true;
+	SetPosition( X_SCREEN_SIZE / 2 , Y_SCREEN_SIZE - bmpinfo.bmHeight - 50);
 
 
 }

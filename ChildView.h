@@ -8,6 +8,9 @@
 #include "Player.h"
 #include "Bullet.h"
 #include "CInput.h"
+#include "Monster.h"
+#include "ColliderManager.h"
+
 
 // CChildView 창
 
@@ -21,9 +24,9 @@ public:
 public:
 
 	Player player;
-	
 	CInput inputManager;
-
+	Monster monsters[50];
+	
 
 // 작업입니다.
 public:
@@ -43,14 +46,11 @@ protected:
 	afx_msg void OnPaint();
 	DECLARE_MESSAGE_MAP()
 public:
-//	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-//	afx_msg void OnTimer(UINT_PTR nIDEvent);
-//	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-//	afx_msg void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
-//	afx_msg void OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags);
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
 	afx_msg void OnDestroy();
 	afx_msg void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
 	afx_msg void OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags);
+	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
+	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
 };
 

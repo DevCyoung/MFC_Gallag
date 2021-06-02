@@ -1,63 +1,66 @@
 #pragma once
 
+#include "cmath"
+
+#define COLLIDE_SIZE 30
 
 // Charactor
-
-struct Vector2  
-{
-
-public:
-	int x;
-	int y;
-
-
-public :
-	void move() {
-
-	}
-
-};
-
 class Charactor : public CWnd
 {
 	DECLARE_DYNAMIC(Charactor);
 
-
 public :
+	CBitmap bitmap;
+	BITMAP bmpinfo;
 
-	int x;
-	int y;
-
+public:
+	int ID_SPRITE = 0;
 	int DirX;
 	int DirY;
 	int DirTick;
 
-	int ColiRange = 30;
-	bool isColiide;
-	bool isCollideView = true;
+public :
+	int x;
+	int y;
 
-	CBitmap bitmap;
-	BITMAP bmpinfo;
+	//default
+	int CollideRange = COLLIDE_SIZE;
+
+	bool isAlive = false;
+	bool COLLIDE_VIEW = true;
 
 public :
-	const int X_SIZE = GetSystemMetrics(SM_CXSCREEN);
-	const int Y_SIZE = GetSystemMetrics(SM_CYSCREEN);
-	
+	const int X_SCREEN_SIZE = GetSystemMetrics(SM_CXSCREEN);
+	const int Y_SCREEN_SIZE = GetSystemMetrics(SM_CYSCREEN);
 
-	
 
-	
 public:
 
-	void IsCollide(Charactor &ch)
+	/// <summary>
+	/// 현재 객체와 ch 객체를 비교해 충돌여부를 반환합니다.
+	/// </summary>
+	bool IsCollide(Charactor &ch)
 	{
 
+		int newX = x - ch.x;
+		int newY = y - ch.y;
 
+		int newRange = sqrt( pow(newX, 2) + pow(newY, 2) );
+
+		if (ch.CollideRange + CollideRange >= newRange)
+			return true;
+		return false;
 		
 	}
 
+
+
 	virtual void Show(CPaintDC &dc)
 	{
+
+		if (isAlive == false)
+			return;
+
 		CDC dcmem;
 		CBrush brush;
 
@@ -68,24 +71,30 @@ public:
 				  bmpinfo.bmWidth, bmpinfo.bmHeight,
 			&dcmem, 0, 0, SRCCOPY);
 
-
-		if (isCollideView) 
+		if (COLLIDE_VIEW) 
 		{
-
 			brush.CreateStockObject(NULL_BRUSH);
 			dc.SelectObject(&brush);
-			dc.Ellipse(x - ColiRange , y - ColiRange , x + ColiRange , y + ColiRange);
-			
+			dc.Ellipse(x - CollideRange , y - CollideRange , x + CollideRange , y + CollideRange);
 		}
-
+		
 	}
 
 	void SetPosition(int x , int y) 
 	{
 		this->x = x;
 		this->y = y;
-
 	}
+
+
+
+
+
+
+
+	//___________수정 해야할 목록___________
+	//
+	//
 
 	void DirSet(int _DirX, int _DirY, int _DirTick)
 	{
@@ -94,28 +103,10 @@ public:
 		this->DirTick = _DirTick;
 	}
 
-
     virtual	void DirMoveTick()
 	{
-
 		/*SetPosition(x, y - DirTick);*/
-
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -15,28 +15,26 @@ public:
 	virtual ~Bullet();
 
 public :
-	bool isShoot = false;
 
+	
 	virtual void DirMoveTick()
 	{
+
+		if (isAlive == false)
+			return;
 
 		SetPosition(x, y - DirTick);
 
 		if (y < -30) 
 		{
-			isShoot = false;
-
+			isAlive = false;
 		}
-
-
 	}
 
 
 protected:
 	DECLARE_MESSAGE_MAP()
-public:
-//	afx_msg void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
-//	afx_msg void OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags);
+
 };
 
 

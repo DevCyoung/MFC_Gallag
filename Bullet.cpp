@@ -13,8 +13,12 @@ IMPLEMENT_DYNAMIC(Bullet, CWnd)
 Bullet::Bullet()
 {
 
+
 	bitmap.LoadBitmap(IDB_BULLET);
 	bitmap.GetBitmap(&bmpinfo);
+	CollideRange = 16;
+	
+	DirTick = 50;
 
 }
 
