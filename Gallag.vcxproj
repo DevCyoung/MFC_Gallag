@@ -221,14 +221,15 @@
     <None Include="res\Gallag.rc2" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="res\IDB_BULLET.bmp" />
+    <Image Include="..\..\..\bitmap1.bmp" />
+    <Image Include="res\bitmap5.bmp" />
+    <Image Include="res\Gallag.ico" />
+    <Image Include="res\IDB_BEE01.bmp" />
     <Image Include="res\IDB_BEE02.bmp" />
     <Image Include="res\IDB_BEE03.bmp" />
     <Image Include="res\IDB_BEE04.bmp" />
-    <Image Include="res\IDB_BEE01.bmp" />
+    <Image Include="res\IDB_BULLET.bmp" />
     <Image Include="res\IDB_CRAFT.bmp" />
-    <Image Include="res\bitmap1.bmp" />
-    <Image Include="res\Gallag.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

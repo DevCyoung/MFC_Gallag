@@ -58,24 +58,29 @@ public:
 	virtual void Show(CPaintDC &dc)
 	{
 
+
 		if (isAlive == false)
 			return;
 
-		CDC dcmem;
+		CDC memDC;
 		CBrush brush;
 
-		dcmem.CreateCompatibleDC(&dc);
-		dcmem.SelectObject(&bitmap);
+		memDC.CreateCompatibleDC(&dc);
+		memDC.SelectObject(&bitmap);
 
-		dc.BitBlt(x - bmpinfo.bmWidth / 2 , y - bmpinfo.bmHeight / 2, 
+		/*dc.BitBlt(x - bmpinfo.bmWidth / 2 , y - bmpinfo.bmHeight / 2,
 				  bmpinfo.bmWidth, bmpinfo.bmHeight,
-			&dcmem, 0, 0, SRCCOPY);
+			&memDC, 0, 0, SRCCOPY);*/
 
-		if (COLLIDE_VIEW) 
+		::TransparentBlt(dc.m_hDC, x - bmpinfo.bmWidth / 2, y - bmpinfo.bmHeight / 2, bmpinfo.bmWidth, bmpinfo.bmHeight,
+			memDC.m_hDC, 0, 0, bmpinfo.bmWidth, bmpinfo.bmHeight, RGB(255, 0, 255));
+
+		if (COLLIDE_VIEW)
 		{
 			brush.CreateStockObject(NULL_BRUSH);
 			dc.SelectObject(&brush);
-			dc.Ellipse(x - CollideRange , y - CollideRange , x + CollideRange , y + CollideRange);
+			dc.Ellipse(x - CollideRange, y - CollideRange, x + CollideRange, y + CollideRange);
+
 		}
 		
 	}
