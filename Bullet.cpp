@@ -17,7 +17,7 @@ Bullet::Bullet()
 	bitmap.LoadBitmap(IDB_BULLET);
 	bitmap.GetBitmap(&bmpinfo);
 	CollideRange = 16;
-	
+	CollideRange = 17;
 	DirTick = 50;
 
 }

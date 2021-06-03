@@ -101,25 +101,25 @@
     <Image Include="res\Gallag.ico">
       <Filter>리소스 파일</Filter>
     </Image>
+    <Image Include="res\IDB_BULLET.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="res\IDB_CRAFT.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="res\IDB_BEE01.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
     <Image Include="res\bitmap1.bmp">
       <Filter>리소스 파일</Filter>
     </Image>
-    <Image Include="..\..\..\IDB_CRAFT.bmp">
+    <Image Include="res\IDB_BEE02.bmp">
       <Filter>리소스 파일</Filter>
     </Image>
-    <Image Include="..\..\..\IDB_BULLET.bmp">
+    <Image Include="res\IDB_BEE03.bmp">
       <Filter>리소스 파일</Filter>
     </Image>
-    <Image Include="..\..\..\IDB_BEE01.bmp">
-      <Filter>리소스 파일</Filter>
-    </Image>
-    <Image Include="..\..\..\IDB_BEE02.bmp">
-      <Filter>리소스 파일</Filter>
-    </Image>
-    <Image Include="..\..\..\IDB_BEE03.bmp">
-      <Filter>리소스 파일</Filter>
-    </Image>
-    <Image Include="..\..\..\IDB_BEE04.bmp">
+    <Image Include="res\IDB_BEE04.bmp">
       <Filter>리소스 파일</Filter>
     </Image>
   </ItemGroup>
