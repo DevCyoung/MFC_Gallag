@@ -34,7 +34,7 @@ Monster::Monster()
 
 	xPos += X_VAL;
 
-	if (xPos % (1800) == 0)
+	if (xPos % (1700) == 0)
 	{
 		yPos += Y_VAL;
 		xPos  = X_VAL;

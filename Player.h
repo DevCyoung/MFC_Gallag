@@ -54,8 +54,6 @@ public :
 	void Shoot() 
 	{
 
-		/*bullets[bulletIndex].DirSet(0, 0, 50);*/
-
 		bullets[bulletIndex].isAlive = true;
 		bullets[bulletIndex].SetPosition(x, y - 20);
 		bulletIndex++;
@@ -63,7 +61,6 @@ public :
 		if (bulletIndex >= BULLET_SIZE) {
 			bulletIndex = 0;
 		}
-
 	}
 
 public :

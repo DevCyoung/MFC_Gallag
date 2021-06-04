@@ -77,10 +77,10 @@ void CChildView::OnPaint()
 	//Paint Monster
 	for (int i = 0; i < 50; i++)
 	{
+		monsters[i].DirMoveTick();
 		monsters[i].Show(dc);
 	}
 		
-
 	//Paint Monster && bullet Tick Move
 	for (int i = 0; i < BULLET_SIZE; i++)
 	{
@@ -95,8 +95,7 @@ void CChildView::OnPaint()
 
 		if (player.bullets[i].isAlive == false) 
 			continue;
-		
-
+	
 		for (int j = 0; j < 50; j++)
 		{
 
@@ -105,20 +104,14 @@ void CChildView::OnPaint()
 		
 			if ( player.bullets[i].IsCollide(monsters[j]) )
 			{
+
 				player.bullets[i].isAlive = false;
 				monsters[j].isAlive = false;
 
 			}
-
 		}
 	}
-
-
-
-
-
 }
-
 
 void CChildView::OnTimer(UINT_PTR nIDEvent)
 {
@@ -126,14 +119,10 @@ void CChildView::OnTimer(UINT_PTR nIDEvent)
 
 	// Controller
 	inputManager.Controller(player, 1);
-
-
 	Invalidate();
 
 	CWnd::OnTimer(nIDEvent);
 }
-
-
 
 // 방향키 , 스페이스바 
 void CChildView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -151,8 +140,6 @@ void CChildView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	case VK_SPACE:
 		inputManager.STATE |= inputManager.SPACE;
 		break;
-
-
 
 	}
 
@@ -189,6 +176,19 @@ void CChildView::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 	CWnd::OnKeyUp(nChar, nRepCnt, nFlags);
 }
 
+// 임시 백그라운드
+
+BOOL CChildView::OnEraseBkgnd(CDC* pDC)
+{
+
+	CRect rect;
+	GetClientRect(rect);
+	pDC->FillSolidRect(rect, RGB(0, 0, 0));
+
+	return TRUE;
+	//return CWnd::OnEraseBkgnd(pDC);
+}
+
 
 void CChildView::OnDestroy()
 {
@@ -200,18 +200,3 @@ void CChildView::OnDestroy()
 }
 
 
-// 임시 백그라운드
-
-BOOL CChildView::OnEraseBkgnd(CDC* pDC)
-{
-
-	CRect rect;
-	GetClientRect(rect);
-	pDC->FillSolidRect(rect, RGB(0, 0, 0));
-
-	return TRUE;
-
-	
-
-	//return CWnd::OnEraseBkgnd(pDC);
-}
