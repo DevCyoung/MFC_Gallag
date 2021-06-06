@@ -39,6 +39,7 @@ END_MESSAGE_MAP()
 
 int CChildView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
+
 	if (CWnd::OnCreate(lpCreateStruct) == -1)
 		return -1;
 
@@ -74,14 +75,14 @@ void CChildView::OnPaint()
 
 	player.Show(dc);
 
-	//Paint Monster
+	//Show Monster
 	for (int i = 0; i < 50; i++)
 	{
 		monsters[i].DirMoveTick();
 		monsters[i].Show(dc);
 	}
 		
-	//Paint Monster && bullet Tick Move
+	//Bullet Tick Move , Show
 	for (int i = 0; i < BULLET_SIZE; i++)
 	{
 		player.bullets[i].DirMoveTick();
@@ -183,7 +184,7 @@ BOOL CChildView::OnEraseBkgnd(CDC* pDC)
 
 	CRect rect;
 	GetClientRect(rect);
-	pDC->FillSolidRect(rect, RGB(0, 0, 0));
+	pDC->FillSolidRect(rect, RGB(255, 255, 255));
 
 	return TRUE;
 	//return CWnd::OnEraseBkgnd(pDC);
