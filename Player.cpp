@@ -19,7 +19,6 @@ Player::Player()
 	isAlive = true;
 	SetPosition( X_SCREEN_SIZE / 2 , Y_SCREEN_SIZE - bmpinfo.bmHeight - 50);
 
-
 }
 
 Player::~Player()

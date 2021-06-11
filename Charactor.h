@@ -85,10 +85,11 @@ public:
 		
 	}
 
-	void SetPosition(int x , int y) 
+	virtual void SetPosition(int x , int y) 
 	{
 		this->x = x;
 		this->y = y;
+
 	}
 
 

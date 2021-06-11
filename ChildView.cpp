@@ -76,10 +76,10 @@ void CChildView::OnPaint()
 	player.Show(dc);
 
 	//Show Monster
-	for (int i = 0; i < 50; i++)
+	for (int i = 0; i < MONSTER_PULL; i++)
 	{
-		monsters[i].DirMoveTick();
-		monsters[i].Show(dc);
+		mapManager.monsters[i].DirMoveTick();
+		mapManager.monsters[i].Show(dc);
 	}
 		
 	//Bullet Tick Move , Show
@@ -87,7 +87,6 @@ void CChildView::OnPaint()
 	{
 		player.bullets[i].DirMoveTick();
 		player.bullets[i].Show(dc);
-
 	}
 
 	//Collide Check
@@ -97,21 +96,38 @@ void CChildView::OnPaint()
 		if (player.bullets[i].isAlive == false) 
 			continue;
 	
-		for (int j = 0; j < 50; j++)
+		for (int j = 0; j < MONSTER_PULL; j++)
 		{
 
-			if (monsters[j].isAlive == false)
+			if (mapManager.monsters[j].isAlive == false)
 				continue;
 		
-			if ( player.bullets[i].IsCollide(monsters[j]) )
+			
+			if ( player.bullets[i].IsCollide(mapManager.monsters[j]) )
 			{
+				// 총알과 몬스터 충돌시 일어나는일
+				Monster *monster = &mapManager.monsters[j];
 
+				monster->isAlive = false;
 				player.bullets[i].isAlive = false;
-				monsters[j].isAlive = false;
+				
+				mapManager.tiles[monster->i][monster->j].isShow = false;
 
+				++mapManager.DieMonster;
+
+				break;
 			}
 		}
 	}
+
+	if (mapManager.DieMonster > 8) 
+	{
+		mapManager.DieMonster = 0;
+		mapManager.CreateMonsterSize(13);
+
+	}
+
+
 }
 
 void CChildView::OnTimer(UINT_PTR nIDEvent)

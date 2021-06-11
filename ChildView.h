@@ -9,8 +9,10 @@
 #include "Bullet.h"
 #include "CInput.h"
 #include "Monster.h"
+#include "MapManager.h"
 #include "ColliderManager.h"
 
+#define MONSTER_SIZE 64
 
 // CChildView 창
 
@@ -25,7 +27,12 @@ public:
 
 	Player player;
 	CInput inputManager;
-	Monster monsters[50];
+
+	// 사용할 오브젝트 50개
+
+	MapManager mapManager;
+
+
 	
 
 // 작업입니다.
