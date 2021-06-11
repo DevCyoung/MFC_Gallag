@@ -17,7 +17,7 @@
 CChildView::CChildView()
 {
 
-	
+
 
 }
 
@@ -27,13 +27,13 @@ CChildView::~CChildView()
 
 
 BEGIN_MESSAGE_MAP(CChildView, CWnd)
-ON_WM_PAINT()
-ON_WM_TIMER()
-ON_WM_DESTROY()
-ON_WM_KEYDOWN()
-ON_WM_KEYUP()
-ON_WM_CREATE()
-ON_WM_ERASEBKGND()
+	ON_WM_PAINT()
+	ON_WM_TIMER()
+	ON_WM_DESTROY()
+	ON_WM_KEYDOWN()
+	ON_WM_KEYUP()
+	ON_WM_CREATE()
+	ON_WM_ERASEBKGND()
 END_MESSAGE_MAP()
 
 
@@ -69,7 +69,7 @@ void CChildView::OnPaint()
 {
 
 	// 그리기를 위한 디바이스 컨텍스트입니다.
-	CPaintDC dc(this); 
+	CPaintDC dc(this);
 
 	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
 
@@ -80,8 +80,11 @@ void CChildView::OnPaint()
 	{
 		mapManager.monsters[i].DirMoveTick();
 		mapManager.monsters[i].Show(dc);
+
+
+
 	}
-		
+
 	//Bullet Tick Move , Show
 	for (int i = 0; i < BULLET_SIZE; i++)
 	{
@@ -93,25 +96,24 @@ void CChildView::OnPaint()
 	for (int i = 0; i < BULLET_SIZE; i++)
 	{
 
-		if (player.bullets[i].isAlive == false) 
+		if (player.bullets[i].isAlive == false)
 			continue;
-	
+
 		for (int j = 0; j < MONSTER_PULL; j++)
 		{
 
 			if (mapManager.monsters[j].isAlive == false)
 				continue;
-		
-			
-			if ( player.bullets[i].IsCollide(mapManager.monsters[j]) )
+
+
+			if (player.bullets[i].IsCollide(mapManager.monsters[j]))
 			{
 				// 총알과 몬스터 충돌시 일어나는일
-				Monster *monster = &mapManager.monsters[j];
+				Monster* monster = &mapManager.monsters[j];
 
 				monster->isAlive = false;
 				player.bullets[i].isAlive = false;
-				
-				mapManager.tiles[monster->i][monster->j].isShow = false;
+				mapManager.tiles[monster->i][monster->j].isAlive = false;
 
 				++mapManager.DieMonster;
 
@@ -120,10 +122,15 @@ void CChildView::OnPaint()
 		}
 	}
 
-	if (mapManager.DieMonster > 8) 
+	if (mapManager.DieMonster > 20)
 	{
-		mapManager.DieMonster = 0;
-		mapManager.CreateMonsterSize(13);
+		mapManager.DieMonster -= 8;
+		mapManager.CreateMonsterSize(8, startPos[index][0], startPos[index][1]);
+
+		index++;
+
+		if (index >= 3)
+			index = 0;
 
 	}
 
@@ -210,10 +217,16 @@ BOOL CChildView::OnEraseBkgnd(CDC* pDC)
 void CChildView::OnDestroy()
 {
 	CWnd::OnDestroy();
-	
+
 	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
 	KillTimer(1);
 
 }
 
+void MonsterAttack()
+{
+
+
+
+}
 

@@ -15,21 +15,9 @@ public:
 	virtual ~Bullet();
 
 public :
+	virtual void DirMoveTick();
 
 	
-	virtual void DirMoveTick()
-	{
-
-		if (isAlive == false)
-			return;
-
-		SetPosition(x, y - DirTick);
-
-		if (y < -30) 
-		{
-			isAlive = false;
-		}
-	}
 
 
 protected:

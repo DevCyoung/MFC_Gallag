@@ -8,7 +8,7 @@ enum MON_STATE
 {
 	MOVE_FLY,
 	MOVE_IDLE,
-
+	MOVE_ATTACK,
 
 };
 
@@ -40,51 +40,22 @@ public:
 
 	int tickCount = 100;
 
-	virtual void DirMoveTick()
-	{
-		tickCount += 1;
-
-		if (state == MOVE_IDLE)
-		{
-			if (tickCount < 40)
-				return;
-			SetPosition(x + 20 * dir, y);
-			dir *= -1;
-			tickCount = 0;
-		}
-		else if (state == MOVE_FLY)
-		{
-			
-			SetPosition(x + dir_x, y + dir_y);
-
-			int newX = destinationX - x;
-			int newY = destinationY - y;
-
-			if (newX < 0)
-				newX *= -1;
-
-			if (newY < 0)
-				newY *= -1;
-
-			if (newX < 5 && newY < 5)
-			{
-				SetPosition(destinationX, destinationY);
-				state = MOVE_IDLE;
-			}
-
-
-		}
-
+	virtual void DirMoveTick();
+	
 		
 
-	}
-
-	inline void SetTilePosition(int i, int j) 
+	inline void SetTilePosition(int i, int j)
 	{
 		this->i = i;
 		this->j = j;
 	}
 
+	void MonsterInitialize()
+	{
+
+		SetPosition(0, 0);
+
+	}
 
 
 

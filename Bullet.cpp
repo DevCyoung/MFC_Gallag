@@ -28,6 +28,22 @@ Bullet::~Bullet()
 }
 
 
+
+void Bullet :: DirMoveTick()
+{
+
+	if (isAlive == false)
+		return;
+
+	SetPosition(x, y - DirTick);
+
+	if (y < -30)
+	{
+		isAlive = false;
+	}
+
+}
+
 BEGIN_MESSAGE_MAP(Bullet, CWnd)
 END_MESSAGE_MAP()
 

@@ -26,33 +26,9 @@ public :
 
 	int currentTick = 100000;
 
-	void Controller(Player &player  , int tickCount ) 
-	{
-		
-		currentTick += tickCount;
+	void Controller(Player& player, int tickCount);
 
-		
-		if (STATE & RIGHT)			//Right Move
-		{
-			player.RightMove();
-		}
-		else if (STATE & LEFT)		//LEFT Move
-		{
-			player.LeftMove();
-		}
-
-		if (STATE & SPACE) 
-		{
-
-			if(currentTick > SHOOT_DELAY) {
-
-				player.Shoot();
-				currentTick = 0;
-
-			}
-
-		}
-	}
+	
 
 public:
 	CInput();

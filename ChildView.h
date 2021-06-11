@@ -18,11 +18,11 @@
 
 class CChildView : public CWnd
 {
-// 생성입니다.
+	// 생성입니다.
 public:
 	CChildView();
 
-// 특성입니다.
+	// 특성입니다.
 public:
 
 	Player player;
@@ -32,19 +32,31 @@ public:
 
 	MapManager mapManager;
 
+	int startPos[3][2] =
+	{
+		{1920 / 2 , -200 },
+		{-200 , 540 },
+		{2200 , 540 },
 
-	
+	};
 
-// 작업입니다.
+	int index = 0;
+
+
+
+
+
+
+	// 작업입니다.
 public:
 
 
 
-// 재정의입니다.
-	protected:
+	// 재정의입니다.
+protected:
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 
-// 구현입니다.
+	// 구현입니다.
 public:
 	virtual ~CChildView();
 
