@@ -112,6 +112,10 @@ public:
 		
 
 	}
+	/// <summary>
+	/// i , j 번째 타일에 생성한다.
+	/// 이미 있으면 취소한다.
+	/// </summary>
 	void DefaultCreateMonster(int i, int j)
 	{
 
