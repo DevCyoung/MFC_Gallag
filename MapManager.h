@@ -45,6 +45,16 @@ public:
 	int CurMonster = 0;
 	int DieMonster = 0;
 
+	int startPos[3][2] =
+	{
+		{1920 / 2 , -200 },
+		{-200 , 540 },
+		{2200 , 540 },
+
+	};
+
+	int index = 0;
+
 public:
 	/// <summary>
 	/// 64마리의 몬스터를 소환한다.
@@ -55,9 +65,9 @@ public:
 	void TilesInit();
 	void DefaultCreateMonster(int i, int j);
 
-	void FlyCreateMonster(int i, int j, int startX, int startY);
-	void CreateMonsterSize(int size, int startX, int startY);
-
+	void FlyingCreateMonster(int i, int j, int startX, int startY);
+	void CreateMonsterSize(int size);
+	
 
 
 

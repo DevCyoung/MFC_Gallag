@@ -30,38 +30,10 @@ public :
 
 public :
 
-	void LeftMove() 
-	{
-		int tempX = x;
-		tempX -= moveScale;
+	void LeftMove();
+	void RightMove();
+	void Shoot();
 
-		if (0 > tempX - 80)
-			return;
-		x -= moveScale;
-
-	}
-
-	void RightMove()
-	{
-		int tempX = x;
-		tempX += moveScale;
-
-		if (X_SCREEN_SIZE < tempX + 80)
-			return;
-		x += moveScale;
-	}	
-
-	void Shoot() 
-	{
-
-		bullets[bulletIndex].isAlive = true;
-		bullets[bulletIndex].SetPosition(x, y - 20);
-		bulletIndex++;
-
-		if (bulletIndex >= BULLET_SIZE) {
-			bulletIndex = 0;
-		}
-	}
 
 public :
 	

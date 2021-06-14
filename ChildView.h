@@ -32,15 +32,7 @@ public:
 
 	MapManager mapManager;
 
-	int startPos[3][2] =
-	{
-		{1920 / 2 , -200 },
-		{-200 , 540 },
-		{2200 , 540 },
-
-	};
-
-	int index = 0;
+	
 
 
 
@@ -49,6 +41,7 @@ public:
 
 	// 작업입니다.
 public:
+	void ColliderCheck();
 
 
 

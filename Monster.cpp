@@ -14,7 +14,7 @@ IMPLEMENT_DYNAMIC(Monster, CWnd)
 
 int xPos = 100;
 int yPos = 0;
-
+int DestroyCount = 0;
 int count = 0;
 
 Monster::Monster()
@@ -38,14 +38,12 @@ Monster::Monster()
 
 
 }
-
 Monster::~Monster()
 {
 }
-
-
 void Monster:: DirMoveTick()
 {
+
 	tickCount += 1;
 
 	if (state == MOVE_IDLE)
@@ -61,6 +59,7 @@ void Monster:: DirMoveTick()
 	else if (state == MOVE_FLY)
 	{
 
+		++DestroyCount;
 		SetPosition(x + dir_x, y + dir_y);
 
 		int newX = destinationX - x;
@@ -80,6 +79,11 @@ void Monster:: DirMoveTick()
 		}
 
 
+		/*if (DestroyCount > 3000)
+			this->isAlive = false;*/
+
+
+
 	}
 	else if (state == MOVE_ATTACK)
 	{
@@ -89,7 +93,6 @@ void Monster:: DirMoveTick()
 
 
 }
-
 
 BEGIN_MESSAGE_MAP(Monster, CWnd)
 END_MESSAGE_MAP()

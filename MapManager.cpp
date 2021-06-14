@@ -29,46 +29,9 @@ MapManager::MapManager()
 	}
 
 }
-
 MapManager::~MapManager()
 {
 }
-
-Monster* MapManager:: CreatePMonster()
-{
-
-	for (int i = 0; i < MONSTER_PULL; i++)
-	{
-		if (monsters[i].isAlive == false)
-		{
-			monsters[i].isAlive = true;
-			return &monsters[i];
-		}
-
-	}
-
-}
-Tile* MapManager::GetAlivePTile()
-{
-
-
-	for (int i = 0; i < Y_SIZE; i++)
-	{
-		for (int j = 0; j < X_SIZE; j++)
-		{
-
-			if (tiles[i][j].isAlive == false)
-			{
-				tiles[i][j].isAlive = true;
-				return &tiles[i][j];
-
-			}
-
-		}
-	}
-
-}
-
 void MapManager::TilesInit()
 {
 	static int m_xPos = 100;
@@ -101,7 +64,42 @@ void MapManager::TilesInit()
 // 몬스터를 생성한다.
 // 몬스터를 생성하면서 
 // 몬스터가 타일맵에서의 위치를 초기화한다.
-void MapManager::FlyCreateMonster(int i, int j, int startX, int startY)
+Tile* MapManager::GetAlivePTile()
+{
+
+
+	for (int i = 0; i < Y_SIZE; i++)
+	{
+		for (int j = 0; j < X_SIZE; j++)
+		{
+
+			if (tiles[i][j].isAlive == false)
+			{
+				tiles[i][j].isAlive = true;
+				return &tiles[i][j];
+
+			}
+
+		}
+	}
+
+}
+Monster* MapManager:: CreatePMonster()
+{
+
+	for (int i = 0; i < MONSTER_PULL; i++)
+	{
+
+		if ( monsters[i].isAlive == false )
+		{
+			monsters[i].isAlive = true;
+			return &monsters[i];
+		}
+
+	}
+
+}
+void MapManager::FlyingCreateMonster(int i, int j, int startX, int startY)
 {
 
 	Monster* monster = CreatePMonster();
@@ -110,17 +108,19 @@ void MapManager::FlyCreateMonster(int i, int j, int startX, int startY)
 	tile->isAlive = true;
 
 	monster->SetPosition(startX, startY);
-	monster->SetTilePosition(i, j);
+	monster->SetTilePosition(tile->i, tile->j);
 
 	monster->destinationX = tile->x;
 	monster->destinationY = tile->y;
 
 	int dirX = monster->destinationX - monster->x;
 	int dirY = monster->destinationY - monster->y;
-	float newRange = sqrt(pow(dirX, 2) + pow(dirY, 2));
 
-	monster->dir_x = (dirX / newRange) * 10;
-	monster->dir_y = (dirY / newRange) * 10;
+	float newRange = sqrt( pow(dirX, 2) + pow(dirY, 2) );
+
+	monster->dir_x =  (dirX / newRange) * 14;
+	monster->dir_y =  (dirY / newRange) * 14;
+
 	monster->state = MOVE_FLY;
 
 
@@ -156,9 +156,7 @@ void MapManager::DefaultCreateMonster(int i, int j)
 
 }
 
-
-
-void MapManager::CreateMonsterSize(int size, int startX, int startY)
+void MapManager::CreateMonsterSize(int size)
 {
 
 
@@ -175,12 +173,16 @@ void MapManager::CreateMonsterSize(int size, int startX, int startY)
 			if (tiles[i][j].isAlive == false)
 			{
 				--size;
-				FlyCreateMonster(i, j, startX, startY);
+				FlyingCreateMonster(i, j, startPos[index][0], startPos[index][1]);
 
+				index++;
+				if (index >= 3)
+					index = 0;
 			}
 
 		}
 	}
+
 
 }
 

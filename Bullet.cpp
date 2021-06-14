@@ -42,6 +42,7 @@ void Bullet :: DirMoveTick()
 		isAlive = false;
 	}
 
+
 }
 
 BEGIN_MESSAGE_MAP(Bullet, CWnd)

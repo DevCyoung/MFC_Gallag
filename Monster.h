@@ -23,7 +23,7 @@ public:
 	
 	int dir = -1;
 
-	//Dir I , J
+	//Tile I , J
 	int i;
 	int j;
 

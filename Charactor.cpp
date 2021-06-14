@@ -44,11 +44,18 @@ void Charactor ::  Show(CPaintDC& dc)
 	CDC memDC;
 	CBrush brush;
 
-	memDC.CreateCompatibleDC(&dc);
-	memDC.SelectObject(&bitmap);
+	CBitmap* pOldbmp;
 
+	memDC.CreateCompatibleDC(&dc);
+	pOldbmp = memDC.SelectObject(&bitmap);
+
+	//배경 투명화 하면서 그린다.
 	::TransparentBlt(dc.m_hDC, x - bmpinfo.bmWidth / 2, y - bmpinfo.bmHeight / 2, bmpinfo.bmWidth, bmpinfo.bmHeight,
 		memDC.m_hDC, 0, 0, bmpinfo.bmWidth, bmpinfo.bmHeight, RGB(255, 0, 255));
+
+	/*memDC.SelectObject(pOldbmp);
+	bitmap.DeleteObject();
+	memDC.DeleteDC();*/
 
 	if (COLLIDE_VIEW)
 	{
@@ -64,7 +71,6 @@ void Charactor :: SetPosition(int x, int y)
 	this->y = y;
 
 }
-
 
 //___________수정 해야할 목록___________
 void Charactor::DirSet(int _DirX, int _DirY, int _DirTick)

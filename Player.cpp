@@ -10,6 +10,7 @@
 
 IMPLEMENT_DYNAMIC(Player, CWnd)
 
+
 Player::Player()
 {
 
@@ -20,11 +21,39 @@ Player::Player()
 	SetPosition( X_SCREEN_SIZE / 2 , Y_SCREEN_SIZE - bmpinfo.bmHeight - 50);
 
 }
-
 Player::~Player()
 {
 }
+void Player::LeftMove()
+{
+	int tempX = x;
+	tempX -= moveScale;
 
+	if (0 > tempX - 80)
+		return;
+	x -= moveScale;
+
+}
+void Player::RightMove()
+{
+	int tempX = x;
+	tempX += moveScale;
+
+	if (X_SCREEN_SIZE < tempX + 80)
+		return;
+	x += moveScale;
+}
+void Player::Shoot()
+{
+
+	bullets[bulletIndex].isAlive = true;
+	bullets[bulletIndex].SetPosition(x, y - 20);
+	bulletIndex++;
+
+	if (bulletIndex >= BULLET_SIZE) {
+		bulletIndex = 0;
+	}
+}
 
 BEGIN_MESSAGE_MAP(Player, CWnd)
 END_MESSAGE_MAP()

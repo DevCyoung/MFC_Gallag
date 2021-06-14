@@ -76,63 +76,24 @@ void CChildView::OnPaint()
 	player.Show(dc);
 
 	//Show Monster
+
 	for (int i = 0; i < MONSTER_PULL; i++)
 	{
 		mapManager.monsters[i].DirMoveTick();
 		mapManager.monsters[i].Show(dc);
-
-
-
 	}
 
 	//Bullet Tick Move , Show
+
 	for (int i = 0; i < BULLET_SIZE; i++)
 	{
 		player.bullets[i].DirMoveTick();
 		player.bullets[i].Show(dc);
 	}
 
-	//Collide Check
-	for (int i = 0; i < BULLET_SIZE; i++)
-	{
+	
 
-		if (player.bullets[i].isAlive == false)
-			continue;
-
-		for (int j = 0; j < MONSTER_PULL; j++)
-		{
-
-			if (mapManager.monsters[j].isAlive == false)
-				continue;
-
-
-			if (player.bullets[i].IsCollide(mapManager.monsters[j]))
-			{
-				// 총알과 몬스터 충돌시 일어나는일
-				Monster* monster = &mapManager.monsters[j];
-
-				monster->isAlive = false;
-				player.bullets[i].isAlive = false;
-				mapManager.tiles[monster->i][monster->j].isAlive = false;
-
-				++mapManager.DieMonster;
-
-				break;
-			}
-		}
-	}
-
-	if (mapManager.DieMonster > 20)
-	{
-		mapManager.DieMonster -= 8;
-		mapManager.CreateMonsterSize(8, startPos[index][0], startPos[index][1]);
-
-		index++;
-
-		if (index >= 3)
-			index = 0;
-
-	}
+	
 
 
 }
@@ -143,6 +104,17 @@ void CChildView::OnTimer(UINT_PTR nIDEvent)
 
 	// Controller
 	inputManager.Controller(player, 1);
+
+	//Collide Check
+	ColliderCheck();
+
+	// 생성 패턴 
+	if (mapManager.DieMonster > 5)
+	{
+		mapManager.DieMonster -= 3;
+		mapManager.CreateMonsterSize(3);
+	}
+
 	Invalidate();
 
 	CWnd::OnTimer(nIDEvent);
@@ -223,10 +195,39 @@ void CChildView::OnDestroy()
 
 }
 
-void MonsterAttack()
+
+
+void CChildView::ColliderCheck()
 {
+	for (int i = 0; i < BULLET_SIZE; i++)
+	{
+
+		if (player.bullets[i].isAlive == false)
+			continue;
+
+		for (int j = 0; j < MONSTER_PULL; j++)
+		{
 
 
+			if (mapManager.monsters[j].isAlive == false)
+				continue;
 
+
+			if (player.bullets[i].IsCollide(mapManager.monsters[j]))
+			{
+
+				// 총알과 몬스터 충돌시 일어나는일
+				Monster* monster = &mapManager.monsters[j];
+
+				monster->isAlive = false;
+				player.bullets[i].isAlive = false;
+				mapManager.tiles[monster->i][monster->j].isAlive = false;
+
+				++mapManager.DieMonster;
+
+				break;
+			}
+		}
+	}
 }
 

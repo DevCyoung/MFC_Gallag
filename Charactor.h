@@ -10,7 +10,9 @@ class Charactor : public CWnd
 	DECLARE_DYNAMIC(Charactor);
 
 public :
+
 	CBitmap bitmap;
+
 	BITMAP bmpinfo;
 
 public:
@@ -27,7 +29,7 @@ public :
 	int CollideRange = COLLIDE_SIZE;
 
 	bool isAlive = false;
-	bool COLLIDE_VIEW = true;
+	bool COLLIDE_VIEW = false;
 
 public :
 	const int X_SCREEN_SIZE = GetSystemMetrics(SM_CXSCREEN);
@@ -36,7 +38,7 @@ public :
 
 public:
 
-	virtual void SetPosition(int x, int y);
+	virtual inline void SetPosition(int x, int y);
 	virtual void Show(CPaintDC& dc);
 	virtual	void DirMoveTick();
 
@@ -44,7 +46,6 @@ public:
 	/// 현재 객체와 ch 객체를 비교해 충돌여부를 반환합니다.
 	/// </summary>
 	bool IsCollide(Charactor& ch);
-
 	void DirSet(int _DirX, int _DirY, int _DirTick);
 	
 
