@@ -13,6 +13,26 @@ IMPLEMENT_DYNAMIC(Animation, CWnd)
 Animation::Animation()
 {
 
+	// 초기화
+
+	int fir = 312;
+
+	for (int i = 0; i < 5; i++)
+	{
+
+		CBitmap bitmap;
+		BITMAP bmpinfo;
+
+		bitmaps[i].LoadBitmap(fir + i);
+		bitmaps[i].GetBitmap(&bmpinfo);
+
+	}
+
+
+
+
+
+
 }
 
 Animation::~Animation()

@@ -45,11 +45,14 @@ public:
 	int CurMonster = 0;
 	int DieMonster = 0;
 
-	int startPos[3][2] =
+	int startPos[6][2] =
 	{
 		{1920 / 2 , -200 },
 		{-200 , 540 },
-		{2200 , 540 },
+		{1920 / 3 , -200 },
+		{1920 / 6 , -200 },
+		{1920 / 9 , -200 },
+		{-200 , 800 },
 
 	};
 
@@ -59,14 +62,14 @@ public:
 	/// <summary>
 	/// 64마리의 몬스터를 소환한다.
 	/// </summary>
-	Monster* CreatePMonster();
-	Tile* GetAlivePTile();
+	Monster* GetAliveMonster();
+	Tile* GetAliveTile();
 
 	void TilesInit();
-	void DefaultCreateMonster(int i, int j);
+	void SetDefaultMonster(int i, int j);
 
-	void FlyingCreateMonster(int i, int j, int startX, int startY);
-	void CreateMonsterSize(int size);
+	void SetMonster(int i, int j, int startX, int startY);
+	void CreateMonster(int size);
 	
 
 

@@ -78,16 +78,14 @@ void Monster:: DirMoveTick()
 			tickCount = 0;
 		}
 
-
-		/*if (DestroyCount > 3000)
-			this->isAlive = false;*/
-
-
-
 	}
 	else if (state == MOVE_ATTACK)
 	{
+
+
 		SetPosition(x + dir_x, y + dir_y);
+
+
 	}
 
 

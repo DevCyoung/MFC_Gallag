@@ -31,6 +31,7 @@ public:
 	// 사용할 오브젝트 50개
 
 	MapManager mapManager;
+	Animation booms[10];
 
 	
 
@@ -42,7 +43,7 @@ public:
 	// 작업입니다.
 public:
 	void ColliderCheck();
-
+	void BoomAnim(int x, int y);
 
 
 	// 재정의입니다.

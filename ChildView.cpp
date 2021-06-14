@@ -13,7 +13,6 @@
 #define new DEBUG_NEW
 #endif
 
-
 CChildView::CChildView()
 {
 
@@ -73,6 +72,12 @@ void CChildView::OnPaint()
 
 	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
 
+	CDC memDC;
+	memDC.CreateCompatibleDC(&dc);
+
+
+
+
 	player.Show(dc);
 
 	//Show Monster
@@ -91,13 +96,21 @@ void CChildView::OnPaint()
 		player.bullets[i].Show(dc);
 	}
 
+	//BoomShow
+
+	for (int i = 0; i < 10; i++)
+	{
+
+		if (booms[i].isShow == true)
+			booms[i].Show(dc);
+
+	}
 	
 
 	
 
 
 }
-
 void CChildView::OnTimer(UINT_PTR nIDEvent)
 {
 	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
@@ -109,17 +122,16 @@ void CChildView::OnTimer(UINT_PTR nIDEvent)
 	ColliderCheck();
 
 	// 생성 패턴 
-	if (mapManager.DieMonster > 5)
+	if (mapManager.DieMonster > 10)
 	{
-		mapManager.DieMonster -= 3;
-		mapManager.CreateMonsterSize(3);
+		mapManager.DieMonster -= 9;
+		mapManager.CreateMonster(8);
 	}
 
 	Invalidate();
 
 	CWnd::OnTimer(nIDEvent);
 }
-
 // 방향키 , 스페이스바 
 void CChildView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
@@ -141,7 +153,6 @@ void CChildView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 	CWnd::OnKeyDown(nChar, nRepCnt, nFlags);
 }
-
 // 방향키 , 스페이스바 
 void CChildView::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
@@ -171,9 +182,6 @@ void CChildView::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 	CWnd::OnKeyUp(nChar, nRepCnt, nFlags);
 }
-
-// 임시 백그라운드
-
 BOOL CChildView::OnEraseBkgnd(CDC* pDC)
 {
 
@@ -181,11 +189,10 @@ BOOL CChildView::OnEraseBkgnd(CDC* pDC)
 	GetClientRect(rect);
 	pDC->FillSolidRect(rect, RGB(0, 0, 0));
 
-	return TRUE;
+	return FALSE;
+
 	//return CWnd::OnEraseBkgnd(pDC);
 }
-
-
 void CChildView::OnDestroy()
 {
 	CWnd::OnDestroy();
@@ -194,9 +201,6 @@ void CChildView::OnDestroy()
 	KillTimer(1);
 
 }
-
-
-
 void CChildView::ColliderCheck()
 {
 	for (int i = 0; i < BULLET_SIZE; i++)
@@ -223,11 +227,29 @@ void CChildView::ColliderCheck()
 				player.bullets[i].isAlive = false;
 				mapManager.tiles[monster->i][monster->j].isAlive = false;
 
+				//Boom anim On
+				
+				BoomAnim(monster->x, monster->y);
+
+
 				++mapManager.DieMonster;
 
 				break;
 			}
 		}
 	}
+}
+void CChildView::BoomAnim(int x,  int y)
+{
+
+	booms[pos].isShow = true;
+	booms[pos].x = x;
+	booms[pos].y = y;
+	pos++;
+
+	if (pos >= 10)
+		pos = 0;
+
+
 }
 

@@ -1,8 +1,19 @@
 #pragma once
 
 #include "cmath"
+#include "Animation.h"
 
 #define COLLIDE_SIZE 30
+
+enum CH_STATE
+{
+	NONE,
+	LIVE,
+	BOOM,
+	DIE,
+
+
+};
 
 // Charactor
 class Charactor : public CWnd
@@ -12,8 +23,10 @@ class Charactor : public CWnd
 public :
 
 	CBitmap bitmap;
-
 	BITMAP bmpinfo;
+	Animation anim;
+	CH_STATE ch_state = LIVE;
+
 
 public:
 	int ID_SPRITE = 0;
@@ -39,7 +52,9 @@ public :
 public:
 
 	virtual inline void SetPosition(int x, int y);
+
 	virtual void Show(CPaintDC& dc);
+
 	virtual	void DirMoveTick();
 
 	/// <summary>
