@@ -57,6 +57,9 @@ void Charactor ::  Show(CPaintDC& dc)
 	bitmap.DeleteObject();
 	memDC.DeleteDC();*/
 
+	//Test
+
+
 	if (COLLIDE_VIEW)
 	{
 		brush.CreateStockObject(NULL_BRUSH);
