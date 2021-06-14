@@ -3,6 +3,10 @@
 
 // Animation
 
+
+
+#define SPRITE_SIZE 5
+
 static int pos = 0;
 
 class Animation : public CWnd
@@ -18,8 +22,8 @@ public:
 
 public :
 
-	CBitmap bitmaps[5];
-	BITMAP bmpinfos[5];
+	CBitmap bitmaps[SPRITE_SIZE];
+	BITMAP bmpinfos[SPRITE_SIZE];
 
 	int index = 0;
 

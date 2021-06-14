@@ -232,6 +232,11 @@
     <Image Include="res\IDB_BEE02.bmp" />
     <Image Include="res\IDB_BEE03.bmp" />
     <Image Include="res\IDB_BEE04.bmp" />
+    <Image Include="res\IDB_BOOM_004.bmp" />
+    <Image Include="res\IDB_BOOM_01.bmp" />
+    <Image Include="res\IDB_BOOM_02.bmp" />
+    <Image Include="res\IDB_BOOM_03.bmp" />
+    <Image Include="res\IDB_BOOM_05.bmp" />
     <Image Include="res\IDB_BULLET.bmp" />
     <Image Include="res\IDB_CRAFT.bmp" />
   </ItemGroup>

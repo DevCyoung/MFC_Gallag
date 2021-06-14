@@ -15,9 +15,9 @@ Animation::Animation()
 
 	// 초기화
 
-	int fir = 312;
+	int fir = IDB_BOOM_01;
 
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < SPRITE_SIZE; i++)
 	{
 
 		CBitmap bitmap;

@@ -72,9 +72,6 @@ void CChildView::OnPaint()
 
 	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
 
-	CDC memDC;
-	memDC.CreateCompatibleDC(&dc);
-
 
 
 
@@ -98,7 +95,7 @@ void CChildView::OnPaint()
 
 	//BoomShow
 
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < BOOM_ANIM_PULL; i++)
 	{
 
 		if (booms[i].isShow == true)

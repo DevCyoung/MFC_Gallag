@@ -3,7 +3,7 @@
 #include "Bullet.h"
 // CInput
 
-#define SHOOT_DELAY 10
+#define SHOOT_DELAY 3
 
 
 

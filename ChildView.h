@@ -31,7 +31,7 @@ public:
 	// 사용할 오브젝트 50개
 
 	MapManager mapManager;
-	Animation booms[10];
+	Animation booms[BOOM_ANIM_PULL];
 
 	
 

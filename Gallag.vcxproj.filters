@@ -134,6 +134,21 @@
     <Image Include="res\IDB_CRAFT.bmp">
       <Filter>리소스 파일</Filter>
     </Image>
+    <Image Include="res\IDB_BOOM_01.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="res\IDB_BOOM_02.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="res\IDB_BOOM_03.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="res\IDB_BOOM_004.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="res\IDB_BOOM_05.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
     <Image Include="res\bitmap5.bmp">
       <Filter>리소스 파일</Filter>
     </Image>

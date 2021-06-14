@@ -4,6 +4,7 @@
 #define X_SIZE	16
 #define MONSTER_SIZE			64
 #define MONSTER_PULL			300
+#define BOOM_ANIM_PULL			10
 
 #include "Monster.h"
 #include "math.h"
