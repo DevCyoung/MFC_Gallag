@@ -3,8 +3,10 @@
 #define Y_SIZE	4
 #define X_SIZE	16
 #define MONSTER_SIZE			64
-#define MONSTER_PULL			300
-#define BOOM_ANIM_PULL			10
+
+#define MONSTER_PULL			100
+#define BULLET_PULL				100
+#define BOOM_ANIM_PULL			12
 
 #include "Monster.h"
 #include "math.h"

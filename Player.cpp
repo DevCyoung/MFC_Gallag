@@ -50,9 +50,10 @@ void Player::Shoot()
 	bullets[bulletIndex].SetPosition(x, y - 20);
 	bulletIndex++;
 
-	if (bulletIndex >= BULLET_SIZE) {
+	if (bulletIndex >= BULLET_PULL) {
 		bulletIndex = 0;
 	}
+
 }
 
 BEGIN_MESSAGE_MAP(Player, CWnd)

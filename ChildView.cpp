@@ -87,7 +87,7 @@ void CChildView::OnPaint()
 
 	//Bullet Tick Move , Show
 
-	for (int i = 0; i < BULLET_SIZE; i++)
+	for (int i = 0; i < BULLET_PULL; i++)
 	{
 		player.bullets[i].DirMoveTick();
 		player.bullets[i].Show(dc);
@@ -202,7 +202,7 @@ void CChildView::OnDestroy()
 }
 void CChildView::ColliderCheck()
 {
-	for (int i = 0; i < BULLET_SIZE; i++)
+	for (int i = 0; i < BULLET_PULL; i++)
 	{
 
 		if (player.bullets[i].isAlive == false)

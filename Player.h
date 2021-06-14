@@ -2,8 +2,8 @@
 
 #include "Charactor.h"
 #include "Bullet.h"
+#include "MapManager.h"
 
-#define BULLET_SIZE 100
 
 // Player
 
@@ -23,7 +23,7 @@ public :
 
 	int moveScale = 15;
 
-	Bullet bullets[BULLET_SIZE];
+	Bullet bullets[BULLET_PULL];
 
 	int bulletIndex = 0;
 
