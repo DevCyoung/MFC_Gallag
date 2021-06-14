@@ -145,6 +145,8 @@ void CChildView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	case VK_SPACE:
 		inputManager.STATE |= inputManager.SPACE;
 		break;
+	case VK_ESCAPE:
+		AfxGetApp()->m_pMainWnd->PostMessage(WM_CLOSE);
 
 	}
 
