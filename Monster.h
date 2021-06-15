@@ -31,16 +31,18 @@ public:
 	MON_STATE state = MOVE_IDLE;
 
 	//방향벡터
-	int dir_x;
-	int dir_y;
+	float dir_x;
+	float dir_y;
 
 	//목적지
-	int destinationX;
-	int destinationY;
+	float destinationX;
+	float destinationY;
 
 	int tickCount = 100;
 
 	virtual void DirMoveTick();
+	void Attack();
+
 	
 		
 
@@ -56,7 +58,6 @@ public:
 		SetPosition(0, 0);
 
 	}
-
 
 
 protected:

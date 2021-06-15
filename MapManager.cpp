@@ -83,7 +83,8 @@ Tile* MapManager::GetAliveTile()
 	}
 
 }
-Monster* MapManager:: GetAliveMonster()
+
+Monster* MapManager:: GetDieMonster()
 {
 
 	for (int i = 0; i < MONSTER_PULL; i++)
@@ -98,7 +99,18 @@ Monster* MapManager:: GetAliveMonster()
 	}
 
 }
+Monster* MapManager::GetLiveIDLEMonster()
+{
+	for (int i = 0; i < MONSTER_PULL; i++)
+	{
 
+		if (monsters[i].isAlive == true && monsters[i].state == MOVE_IDLE)
+		{
+			return &monsters[i];
+		}
+
+	}
+}
 void MapManager::SetDefaultMonster(int i, int j)
 {
 
@@ -121,7 +133,8 @@ void MapManager::SetDefaultMonster(int i, int j)
 void MapManager::SetMonster(int i, int j, int startX, int startY)
 {
 
-	Monster* monster = GetAliveMonster();
+
+	Monster* monster = GetDieMonster();
 	Tile* tile = &tiles[i][j];
 
 	tile->isAlive = true;
@@ -132,21 +145,21 @@ void MapManager::SetMonster(int i, int j, int startX, int startY)
 	monster->destinationX = tile->x;
 	monster->destinationY = tile->y;
 
-	int dirX = monster->destinationX - monster->x;
-	int dirY = monster->destinationY - monster->y;
+	float dirX = monster->destinationX - monster->x;
+	float dirY = monster->destinationY - monster->y;
 
-	float newRange = sqrt( pow(dirX, 2) + pow(dirY, 2) );
+	float newRange = sqrt(dirX * dirX + dirY* dirY );
 
-	monster->dir_x =  (dirX / newRange) * 14;
-	monster->dir_y =  (dirY / newRange) * 14;
+	monster->dir_x =  dirX / newRange;
+	monster->dir_y =  dirY / newRange;
 
 	monster->state = MOVE_FLY;
+
 	return;
 
 
 
 }
-
 void MapManager::CreateMonster(int size)
 {
 
@@ -177,6 +190,39 @@ void MapManager::CreateMonster(int size)
 
 }
 
+//void MapManager::Attack(int size , Player &player)
+//{
+//
+//
+//	for (int i = 0; i < size; i++)
+//	{
+//
+//		Monster* pMonster = GetLiveIDLEMonster();
+//
+//		
+//		Tile* tile = &tiles[pMonster->i][pMonster->j];
+//
+//		tile->isAlive = true;
+//
+//		pMonster->destinationX = player.x;
+//		pMonster->destinationY = player.y;
+//
+//		float dirX = pMonster->destinationX - pMonster->x;
+//		float dirY = pMonster->destinationY - pMonster->y;
+//
+//		float newRange = sqrt(dirX * dirX + dirY * dirY);
+//
+//		pMonster->dir_x = dirX / newRange;
+//		pMonster->dir_y = dirY / newRange;
+//
+//		pMonster->state = MOVE_ATTACK;
+//
+//
+//
+//	}
+//
+//
+//}
 
 
 BEGIN_MESSAGE_MAP(MapManager, CWnd)

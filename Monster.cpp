@@ -9,6 +9,8 @@
 #define X_VAL 100;
 #define Y_VAL 100;
 
+#define MOVE_SCALE 8
+#define INTERVAL 10
 IMPLEMENT_DYNAMIC(Monster, CWnd)
 
 
@@ -41,6 +43,15 @@ Monster::Monster()
 Monster::~Monster()
 {
 }
+
+void Monster::Attack()
+{
+
+
+
+
+}
+
 void Monster:: DirMoveTick()
 {
 
@@ -60,18 +71,20 @@ void Monster:: DirMoveTick()
 	{
 
 		++DestroyCount;
-		SetPosition(x + dir_x, y + dir_y);
+		SetPosition(x + dir_x * MOVE_SCALE, y + dir_y * MOVE_SCALE);
 
-		int newX = destinationX - x;
-		int newY = destinationY - y;
+		float newX = destinationX - x;
+		float newY = destinationY - y;
 
+		//절대값
 		if (newX < 0)
 			newX *= -1;
 
 		if (newY < 0)
 			newY *= -1;
 
-		if (newX < 50 && newY < 50)
+		//일정 간격에 도달한다면
+		if (newX < INTERVAL && newY < INTERVAL)
 		{
 			SetPosition(destinationX, destinationY);
 			state = MOVE_IDLE;

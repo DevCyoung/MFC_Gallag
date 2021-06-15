@@ -37,7 +37,7 @@ public :
 	
 	
 
-	void Show(CPaintDC &dc)
+	void Show(CDC &dc)
 	{
 
 		if (isShow == false)

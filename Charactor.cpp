@@ -26,10 +26,10 @@ Charactor::~Charactor()
 bool Charactor :: IsCollide(Charactor& ch)
 {
 
-	int newX = x - ch.x;
-	int newY = y - ch.y;
+	float newX = x - ch.x;
+	float newY = y - ch.y;
 
-	int newRange = sqrt(pow(newX, 2) + pow(newY, 2));
+	float newRange = sqrt(pow(newX, 2) + pow(newY, 2));
 
 	if (ch.CollideRange + CollideRange >= newRange)
 		return true;
@@ -39,7 +39,7 @@ bool Charactor :: IsCollide(Charactor& ch)
 
 
 
-void Charactor ::  Show(CPaintDC& dc)
+void Charactor ::  Show(CDC &dc)
 {
 
 
@@ -55,48 +55,6 @@ void Charactor ::  Show(CPaintDC& dc)
 		memDC.m_hDC, 0, 0, bmpinfo.bmWidth, bmpinfo.bmHeight, RGB(255, 0, 255));
 
 
-	if (ch_state == LIVE)
-	{
-
-
-	}
-	else if (ch_state == BOOM)
-	{
-
-		//++anim.boomTickCount;
-		//if (anim.boomTickCount > 4)
-		//{
-		//	++anim.boomIndex;
-		//	anim.boomTickCount = 0;
-		//}
-
-		//if (anim.boomIndex >= 5)
-		//{
-
-		//	anim.boomIndex = 4;
-		//	ch_state = DIE;
-
-		//}
-		//	
-
-		//CDC memDC;
-		//CBitmap *my_bit = &anim.bitmaps[anim.boomIndex];
-		//memDC.CreateCompatibleDC(&dc);
-		//memDC.SelectObject(my_bit);
-		//BITMAP tickInfo;
-		//my_bit->GetBitmap(&tickInfo);
-
-		////배경 투명화 하면서 그린다.
-		//::TransparentBlt(dc.m_hDC, x - tickInfo.bmWidth / 2, y - tickInfo.bmHeight / 2, tickInfo.bmWidth, tickInfo.bmHeight,
-		//	memDC.m_hDC, 0, 0, tickInfo.bmWidth, tickInfo.bmHeight, RGB(255, 0, 255));
-
-
-	}
-
-
-
-
-
 	if (COLLIDE_VIEW)
 	{
 		CBrush brush;
@@ -109,7 +67,7 @@ void Charactor ::  Show(CPaintDC& dc)
 
 
 }
-void Charactor :: SetPosition(int x, int y)
+void Charactor::SetPosition(float x, float y)
 {
 	this->x = x;
 	this->y = y;
@@ -117,7 +75,7 @@ void Charactor :: SetPosition(int x, int y)
 }
 
 //___________수정 해야할 목록___________
-void Charactor::DirSet(int _DirX, int _DirY, int _DirTick)
+void Charactor::DirSet(float _DirX, float _DirY, int _DirTick)
 {
 	this->DirX = _DirX;
 	this->DirY = _DirY;

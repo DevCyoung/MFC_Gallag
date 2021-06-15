@@ -27,6 +27,8 @@ public :
 
 	int bulletIndex = 0;
 
+	int curPower = 1;
+
 
 public :
 

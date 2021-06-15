@@ -3,14 +3,15 @@
 #define Y_SIZE	4
 #define X_SIZE	16
 #define MONSTER_SIZE			64
-
 #define MONSTER_PULL			100
 #define BULLET_PULL				100
 #define BOOM_ANIM_PULL			12
 
+
+
 #include "Monster.h"
 #include "math.h"
-
+#include "Player.h"
 
 // MapManager
 
@@ -47,6 +48,7 @@ public:
 
 	int CurMonster = 0;
 	int DieMonster = 0;
+	int CountDieMonster = 0;
 
 	int startPos[6][2] =
 	{
@@ -65,7 +67,8 @@ public:
 	/// <summary>
 	/// 64마리의 몬스터를 소환한다.
 	/// </summary>
-	Monster* GetAliveMonster();
+	Monster* GetDieMonster();
+	Monster* GetLiveIDLEMonster();
 	Tile* GetAliveTile();
 
 	void TilesInit();
@@ -73,7 +76,10 @@ public:
 
 	void SetMonster(int i, int j, int startX, int startY);
 	void CreateMonster(int size);
-	
+
+
+	/*void Attack(int size, Player &player);*/
+
 
 
 

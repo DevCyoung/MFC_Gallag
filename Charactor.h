@@ -30,13 +30,13 @@ public :
 
 public:
 	int ID_SPRITE = 0;
-	int DirX;
-	int DirY;
-	int DirTick;
+	float DirX;
+	float DirY;
+	float DirTick;
 
 public :
-	int x;
-	int y;
+	float x = 0;
+	float y = 0;
 
 	//default
 	int CollideRange = COLLIDE_SIZE;
@@ -51,9 +51,9 @@ public :
 
 public:
 
-	virtual inline void SetPosition(int x, int y);
+	virtual inline void SetPosition(float x, float y);
 
-	virtual void Show(CPaintDC& dc);
+	virtual void Show(CDC &dc);
 
 	virtual	void DirMoveTick();
 
@@ -61,7 +61,7 @@ public:
 	/// 현재 객체와 ch 객체를 비교해 충돌여부를 반환합니다.
 	/// </summary>
 	bool IsCollide(Charactor& ch);
-	void DirSet(int _DirX, int _DirY, int _DirTick);
+	void DirSet(float _DirX, float _DirY, int _DirTick);
 	
 
 

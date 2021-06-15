@@ -46,13 +46,45 @@ void Player::RightMove()
 void Player::Shoot()
 {
 
-	bullets[bulletIndex].isAlive = true;
+
+	/*bullets[bulletIndex].isAlive = true;
 	bullets[bulletIndex].SetPosition(x, y - 20);
 	bulletIndex++;
 
 	if (bulletIndex >= BULLET_PULL) {
 		bulletIndex = 0;
+	}*/
+
+	// Double S
+
+	
+
+	int test[6][5] =
+	{
+		{0},
+		{0},
+		{-25,25},
+		{-35,0, 35},
+		{-40,-15,15,40},
+		{-50,-25,0,25,50}
+	};
+
+
+	for (int i = 0; i < curPower; i++)
+	{
+		bullets[bulletIndex].isAlive = true;
+		bullets[bulletIndex].SetPosition(x + test[curPower][i] , y - 20);
+
+		bulletIndex++;
+
+		if (bulletIndex >= BULLET_PULL) {
+			bulletIndex = 0;
+		}
+
 	}
+
+
+
 
 }
 

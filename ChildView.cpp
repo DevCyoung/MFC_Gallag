@@ -72,17 +72,30 @@ void CChildView::OnPaint()
 
 	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
 
+	/// ///////////////////////////////////////////////////////////////////
+	/// Double buffering
+
+	CRect clientRect;
+	GetClientRect(&clientRect);
+
+	CDC memDC;
+	CBitmap memBitmap;
+	memDC.CreateCompatibleDC(&dc);
+	memBitmap.CreateCompatibleBitmap(&dc, clientRect.right, clientRect.bottom);
+	CBitmap* pOldBitmap = (CBitmap*)memDC.SelectObject(&memBitmap);
+
+	/// Double buffering
+	/// ///////////////////////////////////////////////////////////////////
 
 
-
-	player.Show(dc);
+	player.Show(memDC);
 
 	//Show Monster
 
 	for (int i = 0; i < MONSTER_PULL; i++)
 	{
 		mapManager.monsters[i].DirMoveTick();
-		mapManager.monsters[i].Show(dc);
+		mapManager.monsters[i].Show(memDC);
 	}
 
 	//Bullet Tick Move , Show
@@ -90,7 +103,7 @@ void CChildView::OnPaint()
 	for (int i = 0; i < BULLET_PULL; i++)
 	{
 		player.bullets[i].DirMoveTick();
-		player.bullets[i].Show(dc);
+		player.bullets[i].Show(memDC);
 	}
 
 	//BoomShow
@@ -99,15 +112,22 @@ void CChildView::OnPaint()
 	{
 
 		if (booms[i].isShow == true)
-			booms[i].Show(dc);
+			booms[i].Show(memDC);
 
 	}
-	
 
-	
+	/// ///////////////////////////////////////////////////////////////////
+	/// Double buffering
 
+	dc.BitBlt(0, 0, clientRect.right, clientRect.bottom, &memDC, 0, 0, SRCCOPY);
+	memDC.SelectObject(pOldBitmap);
+	ReleaseDC(&memDC);
+
+	/// Double buffering
+	/// ///////////////////////////////////////////////////////////////////
 
 }
+int Level = 30;
 void CChildView::OnTimer(UINT_PTR nIDEvent)
 {
 	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
@@ -119,13 +139,24 @@ void CChildView::OnTimer(UINT_PTR nIDEvent)
 	ColliderCheck();
 
 	// 생성 패턴 
-	if (mapManager.DieMonster > 10)
+
+	if (mapManager.DieMonster > 30)
 	{
-		mapManager.DieMonster -= 9;
-		mapManager.CreateMonster(8);
+		mapManager.DieMonster -= 31;
+		mapManager.CreateMonster(31);
 	}
 
-	Invalidate();
+	if (mapManager.CountDieMonster >= Level )
+	{
+		Level *= 3;
+		mapManager.CountDieMonster = 0;
+		if( player.curPower < 5 )
+			player.curPower++;
+
+	}
+	
+
+	Invalidate(FALSE);
 
 	CWnd::OnTimer(nIDEvent);
 }
@@ -230,9 +261,8 @@ void CChildView::ColliderCheck()
 				
 				BoomAnim(monster->x, monster->y);
 
-
 				++mapManager.DieMonster;
-
+				++mapManager.CountDieMonster;
 				break;
 			}
 		}
