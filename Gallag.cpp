@@ -129,8 +129,9 @@ void CGallagApp::OnAppAbout()
 {
 	//TesT
 	//Push
-
+	//씨바아
 	aboutDlg.DoModal();
+	
 }
 
 // CGallagApp 메시지 처리기
