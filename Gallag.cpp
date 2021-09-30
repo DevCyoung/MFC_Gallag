@@ -127,7 +127,9 @@ END_MESSAGE_MAP()
 // 대화 상자를 실행하기 위한 응용 프로그램 명령입니다.
 void CGallagApp::OnAppAbout()
 {
-	CAboutDlg aboutDlg;
+	//TesT
+	//Push
+
 	aboutDlg.DoModal();
 }
 
