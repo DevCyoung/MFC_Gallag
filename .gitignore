@@ -3,6 +3,11 @@
 *.lo
 *.o
 *.obj
+ppap
+pan
+apple
+
+
 
 # Compiled Dynamic libraries
 *.so
